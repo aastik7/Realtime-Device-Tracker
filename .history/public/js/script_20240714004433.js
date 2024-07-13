@@ -57,19 +57,3 @@ socket.on("user-diconnected", (id) => {
 });
 
 //Possibly can remove function reverseGeocode and fallback 'else' fallback statement for mobile use.
-function reverseGeocode(lat, lon) {
-  fetch(
-    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Reverse geocoded address:", data.display_name);
-    })
-    .catch((error) => console.error("Reverse geocoding error:", error));
-}
-
-// Call this function when you receive location data
-socket.on("receive-location", (data) => {
-  const { latitude, longitude } = data;
-  reverseGeocode(latitude, longitude);
-});
