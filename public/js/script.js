@@ -31,6 +31,23 @@ if (navigator.geolocation) {
     );
 }
 
+function reverseGeocode(lat, lon) {
+  fetch(
+    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Reverse geocoded address:", data.display_name);
+    })
+    .catch((error) => console.error("Reverse geocoding error:", error));
+}
+
+// Call this function when you receive location data
+socket.on("receive-location", (data) => {
+  const { latitude, longitude } = data;
+  reverseGeocode(latitude, longitude);
+});
+
 const map = L.map("map").setView([0, 0], 16);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
