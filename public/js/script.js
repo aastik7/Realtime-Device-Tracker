@@ -11,8 +11,8 @@ if (navigator.geolocation) {
     },
     {
       enableHighAccuracy: true,
-      timeout: 10000,
-      maximumAge: 1000,
+      timeout: 1000,
+      maximumAge: 0,
     }
   );
 } else {
@@ -72,3 +72,5 @@ socket.on("user-diconnected", (id) => {
     delete markers[id];
   }
 });
+
+//Possibly can remove function reverseGeocode and fallback 'else' fallback statement for mobile use.
