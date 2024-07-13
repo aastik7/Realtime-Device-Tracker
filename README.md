@@ -10,6 +10,8 @@ A real-time location tracking application built with Express.js, Socket.IO, and 
 - 📱 Responsive design for desktop and mobile devices
 - 🔒 Privacy-focused with user consent for location sharing
 
+![image](https://github.com/user-attachments/assets/8fd881b4-fd71-42dd-8222-f5d4145a2117)
+
 ## 🛠️ Technologies Used
 
 - Node.js
