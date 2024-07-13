@@ -11,10 +11,24 @@ if (navigator.geolocation) {
     },
     {
       enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0,
+      timeout: 10000,
+      maximumAge: 1000,
     }
   );
+} else {
+  // Fallback to IP-based geolocation
+  fetch("https://ipapi.co/json/")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("IP-based location:", data);
+      socket.emit("send-location", {
+        latitude: data.latitude,
+        longitude: data.longitude,
+      });
+    })
+    .catch((error) =>
+      console.error("Error fetching IP-based location:", error)
+    );
 }
 
 const map = L.map("map").setView([0, 0], 16);
